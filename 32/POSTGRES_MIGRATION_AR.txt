@@ -1,0 +1,35 @@
+CineVault - الحفظ الدائم في PostgreSQL
+======================================
+
+وش تغير؟
+- إذا DATABASE_URL موجود: كل تعديلات لوحة الأدمن تحفظ تلقائياً في PostgreSQL.
+- إذا كانت قاعدة PostgreSQL جديدة وفاضية: المشروع يبحث عن data/db.json ويستورد كل بياناته تلقائياً مرة واحدة.
+- ملف data/db.json القديم لا ينحذف بعد النقل؛ يبقى كنسخة احتياطية.
+- إذا DATABASE_URL غير موجود: المشروع يشتغل بالطريقة القديمة على data/db.json.
+
+مهم للحفاظ على تعديلاتك الحالية
+--------------------------------
+إذا عندك تعديلات حالية داخل Codespaces، لا تبدأ بمجلد جديد فارغ.
+طبّق ملفات التحديث على نفس المشروع الذي يحتوي data/db.json ثم اربط PostgreSQL.
+عند أول تشغيل مع DATABASE_URL سيتم النقل تلقائياً.
+
+Railway (الأسهل)
+----------------
+1) أضف PostgreSQL لمشروع Railway.
+2) في خدمة CineVault أضف متغير DATABASE_URL يشير إلى متغير قاعدة PostgreSQL.
+3) أضف SESSION_SECRET قوي.
+4) Deploy.
+5) افتح /api/health وتأكد أن:
+   database.backend = postgres
+   database.connected = true
+
+Neon / Supabase
+---------------
+خذ PostgreSQL connection string وضعه كمتغير DATABASE_URL في الاستضافة.
+غالباً SSL مطلوب؛ DATABASE_SSL=auto يتعامل مع أشهر الروابط تلقائياً.
+إذا احتجت إجباره: DATABASE_SSL=require
+
+بعد نجاح النقل
+-------------
+من هذه اللحظة لا تحتاج تعديل db.json.
+أضف/عدل/احذف من Admin Panel فقط وكل شيء ينحفظ بقاعدة PostgreSQL.

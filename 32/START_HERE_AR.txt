@@ -1,0 +1,56 @@
+CineVault / viE - تشغيل سريع + PostgreSQL
+=========================================
+
+تشغيل محلي:
+1) Node.js 22.12 أو أحدث.
+2) داخل مجلد المشروع:
+   npm install
+   npm run dev
+3) افتح:
+   http://localhost:3000
+
+دخول المشاهد للتجربة:
+DEMO-PASS
+
+دخول الإدارة المخفي:
+في نفس خانة Access Code اكتب:
+vin01012007
+
+ثم:
+Username: vin
+Password: waswaswas
+
+الحفظ الدائم:
+- إذا DATABASE_URL مضبوط، كل تعديلات Admin Panel تحفظ تلقائياً في PostgreSQL.
+- إذا PostgreSQL جديد وفاضي وعندك data/db.json قديم، يتم نقله تلقائياً أول تشغيل.
+- db.json القديم لا ينحذف.
+- إذا DATABASE_URL غير موجود، المشروع يستخدم db.json كاحتياط محلي.
+
+للتأكد:
+افتح /api/health
+ويجب أن ترى:
+database.backend = postgres
+database.connected = true
+
+فحص Production:
+npm run check
+npm run build
+npm start
+
+Railway:
+1) ارفع المشروع إلى GitHub.
+2) أضف PostgreSQL داخل Railway.
+3) ضع DATABASE_URL في خدمة CineVault.
+4) أضف:
+   NODE_ENV=production
+   DATABASE_SSL=auto
+   ADMIN_PORTAL_CODE=vin01012007
+   ADMIN_USERNAME=vin
+   ADMIN_PASSWORD=waswaswas
+   SESSION_SECRET=<قيمة عشوائية طويلة>
+5) Build: npm run build
+6) Start: npm start
+7) Health: /api/health
+
+مع PostgreSQL لا تحتاج Volume لحفظ تعديلات لوحة الإدارة.
+اقرأ POSTGRES_MIGRATION_AR.txt للتفاصيل.

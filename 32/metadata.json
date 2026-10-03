@@ -1,0 +1,6 @@
+{
+  "name": "CineVault Series Streaming",
+  "description": "Private series streaming platform with access-code authentication, hidden admin gateway, custom video player, persistent JSON storage, and multiple video providers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
